@@ -11,9 +11,14 @@
 		614BFD2F28DCCAA000B36A41 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BFD2E28DCCAA000B36A41 /* AppDelegate.swift */; };
 		614BFD3128DCCAA000B36A41 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BFD3028DCCAA000B36A41 /* SceneDelegate.swift */; };
 		614BFD3328DCCAA000B36A41 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BFD3228DCCAA000B36A41 /* ViewController.swift */; };
-		614BFD3628DCCAA000B36A41 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614BFD3428DCCAA000B36A41 /* Main.storyboard */; };
+		614BFD3628DCCAA000B36A41 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614BFD3428DCCAA000B36A41 /* Home.storyboard */; };
 		614BFD3828DCCAA200B36A41 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 614BFD3728DCCAA200B36A41 /* Assets.xcassets */; };
 		614BFD3B28DCCAA200B36A41 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 614BFD3928DCCAA200B36A41 /* LaunchScreen.storyboard */; };
+		614BFD4428DDA02900B36A41 /* AlbumListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614BFD4228DDA02900B36A41 /* AlbumListCollectionViewCell.swift */; };
+		614BFD4528DDA02900B36A41 /* AlbumListCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 614BFD4328DDA02900B36A41 /* AlbumListCollectionViewCell.xib */; };
+		61F981EA28DE28E900DC0B2F /* RegistAlbum.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61F981E928DE28E900DC0B2F /* RegistAlbum.storyboard */; };
+		61F981EC28DE290900DC0B2F /* RegistAlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F981EB28DE290900DC0B2F /* RegistAlbumViewController.swift */; };
+		61F981EE28DEDB3C00DC0B2F /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61F981ED28DEDB3C00DC0B2F /* Model.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,10 +26,15 @@
 		614BFD2E28DCCAA000B36A41 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		614BFD3028DCCAA000B36A41 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		614BFD3228DCCAA000B36A41 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		614BFD3528DCCAA000B36A41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		614BFD3528DCCAA000B36A41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Home.storyboard; sourceTree = "<group>"; };
 		614BFD3728DCCAA200B36A41 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		614BFD3A28DCCAA200B36A41 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		614BFD3C28DCCAA200B36A41 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		614BFD4228DDA02900B36A41 /* AlbumListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumListCollectionViewCell.swift; sourceTree = "<group>"; };
+		614BFD4328DDA02900B36A41 /* AlbumListCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlbumListCollectionViewCell.xib; sourceTree = "<group>"; };
+		61F981E928DE28E900DC0B2F /* RegistAlbum.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RegistAlbum.storyboard; sourceTree = "<group>"; };
+		61F981EB28DE290900DC0B2F /* RegistAlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistAlbumViewController.swift; sourceTree = "<group>"; };
+		61F981ED28DEDB3C00DC0B2F /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
 		B9A8C5A86F13C3D3243CE6F5 /* Pods-CheckMusicAlbum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckMusicAlbum.release.xcconfig"; path = "Target Support Files/Pods-CheckMusicAlbum/Pods-CheckMusicAlbum.release.xcconfig"; sourceTree = "<group>"; };
 		C3B09AD3F68A90619FBCBFF1 /* Pods_CheckMusicAlbum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CheckMusicAlbum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DF6A03855EFD87DC50C4B9A8 /* Pods-CheckMusicAlbum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CheckMusicAlbum.debug.xcconfig"; path = "Target Support Files/Pods-CheckMusicAlbum/Pods-CheckMusicAlbum.debug.xcconfig"; sourceTree = "<group>"; };
@@ -74,10 +84,15 @@
 				614BFD2E28DCCAA000B36A41 /* AppDelegate.swift */,
 				614BFD3028DCCAA000B36A41 /* SceneDelegate.swift */,
 				614BFD3228DCCAA000B36A41 /* ViewController.swift */,
-				614BFD3428DCCAA000B36A41 /* Main.storyboard */,
+				614BFD3428DCCAA000B36A41 /* Home.storyboard */,
 				614BFD3728DCCAA200B36A41 /* Assets.xcassets */,
 				614BFD3928DCCAA200B36A41 /* LaunchScreen.storyboard */,
 				614BFD3C28DCCAA200B36A41 /* Info.plist */,
+				614BFD4228DDA02900B36A41 /* AlbumListCollectionViewCell.swift */,
+				614BFD4328DDA02900B36A41 /* AlbumListCollectionViewCell.xib */,
+				61F981E928DE28E900DC0B2F /* RegistAlbum.storyboard */,
+				61F981EB28DE290900DC0B2F /* RegistAlbumViewController.swift */,
+				61F981ED28DEDB3C00DC0B2F /* Model.swift */,
 			);
 			path = CheckMusicAlbum;
 			sourceTree = "<group>";
@@ -88,7 +103,6 @@
 				DF6A03855EFD87DC50C4B9A8 /* Pods-CheckMusicAlbum.debug.xcconfig */,
 				B9A8C5A86F13C3D3243CE6F5 /* Pods-CheckMusicAlbum.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -152,9 +166,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614BFD4528DDA02900B36A41 /* AlbumListCollectionViewCell.xib in Resources */,
+				61F981EA28DE28E900DC0B2F /* RegistAlbum.storyboard in Resources */,
 				614BFD3B28DCCAA200B36A41 /* LaunchScreen.storyboard in Resources */,
 				614BFD3828DCCAA200B36A41 /* Assets.xcassets in Resources */,
-				614BFD3628DCCAA000B36A41 /* Main.storyboard in Resources */,
+				614BFD3628DCCAA000B36A41 /* Home.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,8 +223,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				614BFD4428DDA02900B36A41 /* AlbumListCollectionViewCell.swift in Sources */,
 				614BFD3328DCCAA000B36A41 /* ViewController.swift in Sources */,
 				614BFD2F28DCCAA000B36A41 /* AppDelegate.swift in Sources */,
+				61F981EE28DEDB3C00DC0B2F /* Model.swift in Sources */,
+				61F981EC28DE290900DC0B2F /* RegistAlbumViewController.swift in Sources */,
 				614BFD3128DCCAA000B36A41 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -216,12 +235,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		614BFD3428DCCAA000B36A41 /* Main.storyboard */ = {
+		614BFD3428DCCAA000B36A41 /* Home.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				614BFD3528DCCAA000B36A41 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Home.storyboard;
 			sourceTree = "<group>";
 		};
 		614BFD3928DCCAA200B36A41 /* LaunchScreen.storyboard */ = {
@@ -362,9 +381,11 @@
 				DEVELOPMENT_TEAM = FS7Y3CS9KG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CheckMusicAlbum/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "写真追加のためのカメラアクセス";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真追加のためのフォトライブラリアクセス";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -372,7 +393,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.CheckMusicAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.t.CheckMusicAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -391,9 +412,11 @@
 				DEVELOPMENT_TEAM = FS7Y3CS9KG;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = CheckMusicAlbum/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "写真追加のためのカメラアクセス";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "写真追加のためのフォトライブラリアクセス";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIMainStoryboardFile = Home;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -401,7 +424,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.CheckMusicAlbum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yuki.t.CheckMusicAlbum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
