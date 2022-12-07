@@ -52,6 +52,8 @@ class RegistAlbumViewController: UIViewController {
                 self.registButton.isEnabled = true
             } else {
                 self.registButton.isEnabled = false
+                self.registButton.setTitleColor(UIColor.white, for: .normal)
+                self.registButton.backgroundColor = UIColor.lightGray
             }
         }
     }
@@ -79,6 +81,16 @@ class RegistAlbumViewController: UIViewController {
         
         self.titleField.addTarget(self, action: #selector(checkTextField), for: .editingChanged)
         self.artistField.addTarget(self, action: #selector(checkTextField), for: .editingChanged)
+        
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            // NavigationBarの背景色の設定
+            appearance.backgroundColor = UIColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
+            appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            self.navigationController?.navigationBar.standardAppearance = appearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = appearance
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -144,7 +156,6 @@ class RegistAlbumViewController: UIViewController {
     
     @IBAction func registButtonTapped(_ sender: Any) {
         var addArtistFlg = false
-        print(self.artistField.text)
         let artist = Artist()
         do {
             try realm?.write {
@@ -208,9 +219,12 @@ class RegistAlbumViewController: UIViewController {
         if let title = self.titleField.text, !title.isEmpty,
            let artist = self.artistField.text, !artist.isEmpty {
             self.registButton.isEnabled = true
+            self.registButton.setTitleColor(UIColor.white, for: .normal)
+            self.registButton.backgroundColor = UIColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
         } else {
-            print("IN")
             self.registButton.isEnabled = false
+            self.registButton.setTitleColor(UIColor.white, for: .normal)
+            self.registButton.backgroundColor = UIColor.lightGray
         }
     }
     

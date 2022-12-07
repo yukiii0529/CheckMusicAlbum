@@ -11,7 +11,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Title-->
+        <!--CDチェッカー-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="CheckMusicAlbum" customModuleProvider="target" sceneMemberID="viewController">
@@ -106,7 +106,7 @@
                             <constraint firstItem="FIu-ct-13X" firstAttribute="top" secondItem="KsC-xw-DM5" secondAttribute="bottom" constant="10" id="sb9-XA-EmU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Title" id="TWK-YO-lWy">
+                    <navigationItem key="navigationItem" title="CDチェッカー" id="TWK-YO-lWy">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="TCp-zh-4kH">
                             <color key="tintColor" name="White"/>
                             <connections>
