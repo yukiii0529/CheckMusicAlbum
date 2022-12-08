@@ -11,6 +11,12 @@ import RealmSwift
 class ViewController: UIViewController {
 
     // MARK: - IBOutlet
+    @IBOutlet weak var chooseArtistButton: UIButton!
+    @IBOutlet weak var chooseArtistStackView: UIStackView! {
+        didSet {
+            self.chooseArtistStackView.isHidden = true
+        }
+    }
     @IBOutlet private weak var chooseArtist: UITextField! {
         didSet {
             self.chooseArtist.layer.borderWidth = 1
@@ -105,6 +111,32 @@ class ViewController: UIViewController {
         let viewController =  storyboard.instantiateViewController(withIdentifier: "RegistAlbum") as! RegistAlbumViewController
         viewController.artistArray = self.artistArray
         navigationController?.pushViewController(viewController, animated: true)
+    }
+    @IBAction func chooseArtistButtonTapped(_ sender: UIButton) {
+        if let artistNum = self.artistArray?.count , artistNum != 0 {
+            self.chooseArtistStackView.isHidden = false
+        } else {
+            self.chooseArtistStackView.isHidden = true
+            
+            // ① UIAlertControllerクラスのインスタンスを生成
+            // タイトル, メッセージ, Alertのスタイルを指定する
+            // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+            let alert: UIAlertController = UIAlertController(title: "アルバムを追加してください", message: "アルバムが１枚も登録されていないため、選択するアーティストが存在しません。", preferredStyle:  UIAlertController.Style.alert)
+            // ② Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
+                // ボタンが押された時の処理を書く（クロージャ実装）
+                (action: UIAlertAction!) -> Void in
+                print("OK")
+            })
+            // ③ UIAlertControllerにActionを追加
+
+            alert.addAction(defaultAction)
+            // ④ Alertを表示
+            present(alert, animated: true, completion: nil)
+        }
     }
     
     // MARK: - Private Methods

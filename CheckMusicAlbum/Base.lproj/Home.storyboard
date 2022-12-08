@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HZw-5P-zPD">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="HZw-5P-zPD">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -19,38 +20,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アーティスト名で絞る" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KsC-xw-DM5">
-                                <rect key="frame" x="15" y="107" width="384" height="16"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-ct-13X">
-                                <rect key="frame" x="15" y="133" width="384" height="34.5"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="アーティストを絞る" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cpW-aJ-Wyv">
-                                        <rect key="frame" x="0.0" y="0.0" width="280.5" height="34.5"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTa-CB-Oil">
-                                        <rect key="frame" x="290.5" y="0.0" width="93.5" height="34.5"/>
-                                        <color key="backgroundColor" name="LightBlue"/>
-                                        <color key="tintColor" name="White"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain" title="リセット"/>
-                                    </button>
-                                </subviews>
-                            </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Esi-5d-OC6">
-                                <rect key="frame" x="15" y="182.5" width="384" height="1"/>
+                                <rect key="frame" x="15" y="172" width="384" height="1"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="8Rk-x3-xCf"/>
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" semanticContentAttribute="spatial" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="yGX-zS-0Rd">
-                                <rect key="frame" x="0.0" y="224.5" width="414" height="637.5"/>
+                                <rect key="frame" x="0.0" y="214" width="414" height="648"/>
                                 <color key="backgroundColor" name="BackgroundGray"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="rLG-yX-VEU">
                                     <size key="itemSize" width="140" height="128"/>
@@ -70,40 +48,71 @@
                                 </cells>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="アルバムが登録されていません。" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="urW-Uy-4px">
-                                <rect key="frame" x="100" y="244.5" width="214.5" height="17"/>
+                                <rect key="frame" x="100" y="234" width="214.5" height="17"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="検索結果：0件" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mww-H4-HDH">
-                                <rect key="frame" x="15" y="198.5" width="384" height="16"/>
+                                <rect key="frame" x="15" y="188" width="384" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" name="Black"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="sgK-0H-iya">
+                                <rect key="frame" x="10" y="103" width="394" height="59"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vA4-vA-2oo">
+                                        <rect key="frame" x="0.0" y="0.0" width="394" height="17"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="tintColor" name="Black"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title=" アーティストを絞る ">
+                                            <imageReference key="image" image="chevron.down" catalog="system" symbolScale="small"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="chooseArtistButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nNg-Oh-5g6"/>
+                                        </connections>
+                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="FIu-ct-13X">
+                                        <rect key="frame" x="0.0" y="25" width="394" height="34"/>
+                                        <subviews>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="アーティストを絞る" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cpW-aJ-Wyv">
+                                                <rect key="frame" x="0.0" y="0.0" width="302.5" height="34"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xTa-CB-Oil">
+                                                <rect key="frame" x="312.5" y="0.0" width="81.5" height="34"/>
+                                                <color key="backgroundColor" name="LightBlue"/>
+                                                <color key="tintColor" name="White"/>
+                                                <state key="normal" title="Button"/>
+                                                <buttonConfiguration key="configuration" style="plain" title="リセット"/>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="BackgroundGray"/>
                         <constraints>
                             <constraint firstItem="urW-Uy-4px" firstAttribute="top" secondItem="Mww-H4-HDH" secondAttribute="bottom" constant="30" id="2Iz-BE-FsX"/>
-                            <constraint firstItem="FIu-ct-13X" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="4Ev-y1-H20"/>
+                            <constraint firstItem="Esi-5d-OC6" firstAttribute="top" secondItem="sgK-0H-iya" secondAttribute="bottom" constant="10" id="2gW-eQ-dAN"/>
                             <constraint firstItem="yGX-zS-0Rd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="9NV-w7-x9w"/>
+                            <constraint firstItem="sgK-0H-iya" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="9zs-hT-k3Y"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="sgK-0H-iya" secondAttribute="trailing" constant="10" id="A04-JD-KRm"/>
                             <constraint firstItem="Mww-H4-HDH" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="B6K-Cw-8Rg"/>
                             <constraint firstItem="Esi-5d-OC6" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="D0G-8O-2SR"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="FIu-ct-13X" secondAttribute="trailing" constant="15" id="E0n-ha-PEN"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Esi-5d-OC6" secondAttribute="trailing" constant="15" id="Fou-gq-Hr2"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="yGX-zS-0Rd" secondAttribute="bottom" id="IvB-45-sPg"/>
                             <constraint firstItem="yGX-zS-0Rd" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X6B-Pr-rN0"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="yGX-zS-0Rd" secondAttribute="trailing" id="akg-WH-FbP"/>
-                            <constraint firstItem="KsC-xw-DM5" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="eh1-L2-JEQ"/>
                             <constraint firstItem="urW-Uy-4px" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="fdE-37-3Md"/>
                             <constraint firstItem="Mww-H4-HDH" firstAttribute="top" secondItem="Esi-5d-OC6" secondAttribute="bottom" constant="15" id="hgh-RQ-5GK"/>
                             <constraint firstItem="yGX-zS-0Rd" firstAttribute="top" secondItem="Mww-H4-HDH" secondAttribute="bottom" constant="10" id="iQB-gq-fTv"/>
-                            <constraint firstItem="Esi-5d-OC6" firstAttribute="top" secondItem="FIu-ct-13X" secondAttribute="bottom" constant="15" id="jUY-DT-YGg"/>
-                            <constraint firstItem="KsC-xw-DM5" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="nan-A6-oIF"/>
+                            <constraint firstItem="sgK-0H-iya" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="10" id="j19-5W-ZIf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Mww-H4-HDH" secondAttribute="trailing" constant="15" id="pGk-XF-wYY"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="KsC-xw-DM5" secondAttribute="trailing" constant="15" id="r69-yK-ZuJ"/>
-                            <constraint firstItem="FIu-ct-13X" firstAttribute="top" secondItem="KsC-xw-DM5" secondAttribute="bottom" constant="10" id="sb9-XA-EmU"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="CDチェッカー" id="TWK-YO-lWy">
@@ -117,6 +126,8 @@
                     <connections>
                         <outlet property="albumListcollectionView" destination="yGX-zS-0Rd" id="BhE-OY-Xmu"/>
                         <outlet property="chooseArtist" destination="cpW-aJ-Wyv" id="7VV-Tn-E93"/>
+                        <outlet property="chooseArtistButton" destination="vA4-vA-2oo" id="K5U-m3-NBi"/>
+                        <outlet property="chooseArtistStackView" destination="FIu-ct-13X" id="r9p-GN-Jzc"/>
                         <outlet property="displayAlbumNum" destination="Mww-H4-HDH" id="8l7-WG-euP"/>
                         <outlet property="notAlbumText" destination="urW-Uy-4px" id="Lqs-Ye-4zZ"/>
                         <outlet property="resetButton" destination="xTa-CB-Oil" id="oYf-tj-mJH"/>
@@ -132,7 +143,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HZw-5P-zPD" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="YIA-XR-kOy">
-                        <rect key="frame" x="0.0" y="48" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" name="LightBlue"/>
                         <color key="tintColor" name="White"/>
@@ -161,8 +172,12 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <namedColor name="BackgroundGray">
             <color red="0.96100002527236938" green="0.96100002527236938" blue="0.96100002527236938" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="Black">
+            <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="LightBlue">
             <color red="0.49399998784065247" green="0.81999999284744263" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
