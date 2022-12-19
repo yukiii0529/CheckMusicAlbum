@@ -88,20 +88,39 @@
                                                     <action selector="addJacketButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="erl-Ey-ZAB"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu2-09-0o9">
-                                                <rect key="frame" x="157" y="615" width="100" height="35"/>
-                                                <color key="backgroundColor" name="LightBlue"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="35" id="Y4J-8z-8Ou"/>
-                                                    <constraint firstAttribute="width" constant="100" id="nLk-56-HMn"/>
-                                                </constraints>
-                                                <color key="tintColor" name="White"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="登録"/>
-                                                <connections>
-                                                    <action selector="registButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tT4-dt-keg"/>
-                                                </connections>
-                                            </button>
+                                            <stackView opaque="NO" contentMode="scaleToFill" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="lFr-K7-eEx">
+                                                <rect key="frame" x="92" y="615" width="230" height="35"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QDG-OO-Sep">
+                                                        <rect key="frame" x="0.0" y="0.0" width="100" height="35"/>
+                                                        <color key="backgroundColor" name="LightRed"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="100" id="ww4-0D-ZwA"/>
+                                                            <constraint firstAttribute="height" constant="35" id="x68-Kp-Gg3"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="White"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="削除"/>
+                                                        <connections>
+                                                            <action selector="deleteButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="aY6-BU-fEB"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xu2-09-0o9">
+                                                        <rect key="frame" x="130" y="0.0" width="100" height="35"/>
+                                                        <color key="backgroundColor" name="LightBlue"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="35" id="Y4J-8z-8Ou"/>
+                                                            <constraint firstAttribute="width" constant="100" id="nLk-56-HMn"/>
+                                                        </constraints>
+                                                        <color key="tintColor" name="White"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <buttonConfiguration key="configuration" style="plain" title="登録"/>
+                                                        <connections>
+                                                            <action selector="registButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="tT4-dt-keg"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="rO9-Gb-DtR">
                                                 <rect key="frame" x="10" y="480" width="394" height="120"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -181,10 +200,10 @@
                                             <constraint firstItem="G42-CN-rfd" firstAttribute="centerX" secondItem="4fc-Dx-EQu" secondAttribute="centerX" id="2Dt-di-Ekp"/>
                                             <constraint firstItem="fWE-gh-We1" firstAttribute="top" secondItem="G42-CN-rfd" secondAttribute="bottom" constant="15" id="2vt-af-09y"/>
                                             <constraint firstAttribute="trailing" secondItem="nGZ-FJ-FAg" secondAttribute="trailing" constant="10" id="BoG-VF-zzx"/>
-                                            <constraint firstItem="Xu2-09-0o9" firstAttribute="centerX" secondItem="4fc-Dx-EQu" secondAttribute="centerX" id="BtS-vV-sEA"/>
                                             <constraint firstAttribute="trailing" secondItem="nGZ-FJ-FAg" secondAttribute="trailing" constant="10" id="ERZ-jv-WD4"/>
                                             <constraint firstItem="rO9-Gb-DtR" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="EgD-az-wJO"/>
                                             <constraint firstItem="G42-CN-rfd" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="Eji-yL-LLj"/>
+                                            <constraint firstItem="lFr-K7-eEx" firstAttribute="centerX" secondItem="4fc-Dx-EQu" secondAttribute="centerX" id="FoM-5U-0Pt"/>
                                             <constraint firstItem="nGZ-FJ-FAg" firstAttribute="top" secondItem="quf-Fb-upJ" secondAttribute="bottom" constant="15" id="N7O-Tu-mBI"/>
                                             <constraint firstAttribute="trailing" secondItem="E2y-Ec-0pJ" secondAttribute="trailing" constant="10" id="Pc5-E0-gXA"/>
                                             <constraint firstItem="nGZ-FJ-FAg" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="Q4e-ra-5t0"/>
@@ -192,18 +211,18 @@
                                             <constraint firstItem="E2y-Ec-0pJ" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="U9H-lI-6CM"/>
                                             <constraint firstAttribute="trailing" secondItem="Ey5-dx-AUo" secondAttribute="trailing" constant="10" id="Vj1-bV-prI"/>
                                             <constraint firstItem="dyc-qn-Yq8" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="XVB-yU-qBJ"/>
-                                            <constraint firstAttribute="bottom" secondItem="Xu2-09-0o9" secondAttribute="bottom" constant="15" id="Zla-H8-yUk"/>
                                             <constraint firstItem="Z5q-n3-cDy" firstAttribute="top" secondItem="fWE-gh-We1" secondAttribute="bottom" constant="15" id="aHM-Ra-Cyp"/>
                                             <constraint firstItem="bDq-ug-2gt" firstAttribute="top" secondItem="dyc-qn-Yq8" secondAttribute="bottom" constant="5" id="etY-i6-bFy"/>
                                             <constraint firstAttribute="trailing" secondItem="fWE-gh-We1" secondAttribute="trailing" constant="10" id="ezS-5q-67o"/>
                                             <constraint firstItem="Ey5-dx-AUo" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="fJX-u7-yAX"/>
                                             <constraint firstAttribute="trailing" secondItem="Z5q-n3-cDy" secondAttribute="trailing" constant="10" id="gXM-Th-FbL"/>
                                             <constraint firstItem="G42-CN-rfd" firstAttribute="top" secondItem="Ey5-dx-AUo" secondAttribute="bottom" constant="15" id="hnx-pH-fdF"/>
-                                            <constraint firstItem="Xu2-09-0o9" firstAttribute="top" secondItem="rO9-Gb-DtR" secondAttribute="bottom" constant="15" id="ig3-m9-3Y1"/>
                                             <constraint firstItem="fWE-gh-We1" firstAttribute="leading" secondItem="4fc-Dx-EQu" secondAttribute="leading" constant="10" id="jGU-Bi-XGO"/>
                                             <constraint firstItem="quf-Fb-upJ" firstAttribute="centerX" secondItem="4fc-Dx-EQu" secondAttribute="centerX" constant="60" id="jol-5T-zoU"/>
+                                            <constraint firstAttribute="bottom" secondItem="lFr-K7-eEx" secondAttribute="bottom" constant="15" id="mBu-Xg-9yC"/>
                                             <constraint firstItem="bDq-ug-2gt" firstAttribute="centerX" secondItem="4fc-Dx-EQu" secondAttribute="centerX" id="mPW-Zt-CcY"/>
                                             <constraint firstItem="quf-Fb-upJ" firstAttribute="top" secondItem="bDq-ug-2gt" secondAttribute="bottom" constant="-30" id="nfU-X8-5IX"/>
+                                            <constraint firstItem="lFr-K7-eEx" firstAttribute="top" secondItem="rO9-Gb-DtR" secondAttribute="bottom" constant="15" id="t2X-Gt-5xh"/>
                                             <constraint firstAttribute="trailing" secondItem="rO9-Gb-DtR" secondAttribute="trailing" constant="10" id="tah-gG-VHv"/>
                                             <constraint firstAttribute="trailing" secondItem="G42-CN-rfd" secondAttribute="trailing" constant="10" id="ue0-x8-6uF"/>
                                             <constraint firstItem="rO9-Gb-DtR" firstAttribute="top" secondItem="nGZ-FJ-FAg" secondAttribute="bottom" constant="5" id="uij-Cj-xuv"/>
@@ -238,6 +257,7 @@
                         <outlet property="addJacketButton" destination="quf-Fb-upJ" id="2cF-PR-FoE"/>
                         <outlet property="artistField" destination="MkW-ex-D2n" id="iNm-QS-vgA"/>
                         <outlet property="chooseDatePicker" destination="afg-oF-jtq" id="Kzc-ds-XTi"/>
+                        <outlet property="deleteButton" destination="QDG-OO-Sep" id="o9d-KV-bwV"/>
                         <outlet property="jacketImage" destination="bDq-ug-2gt" id="bwg-6W-C2s"/>
                         <outlet property="noteTextView" destination="rO9-Gb-DtR" id="7K8-A9-CbE"/>
                         <outlet property="registButton" destination="Xu2-09-0o9" id="V7T-iK-0wi"/>
@@ -260,6 +280,9 @@
         </namedColor>
         <namedColor name="LightBlue">
             <color red="0.49399998784065247" green="0.81999999284744263" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="LightRed">
+            <color red="1" green="0.49399998784065247" blue="0.52499997615814209" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="White">
             <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

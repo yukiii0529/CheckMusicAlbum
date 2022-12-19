@@ -44,7 +44,7 @@ class RegistAlbumViewController: UIViewController {
             self.noteTextView.layer.borderColor = CGColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
         }
     }
-    @IBOutlet private weak var registButton: UIButton! {
+    @IBOutlet weak private var registButton: UIButton! {
         didSet {
             self.registButton.layer.cornerRadius = 5
             if self.updateFlg {
@@ -57,6 +57,15 @@ class RegistAlbumViewController: UIViewController {
             }
         }
     }
+    @IBOutlet weak private var deleteButton: UIButton! {
+        didSet {
+            self.deleteButton.layer.cornerRadius = 5
+            if !self.updateFlg {
+                self.deleteButton.isHidden = true
+            }
+        }
+    }
+    
     
     // MARK: - Private Variables
     var realm: Realm? // 定義
@@ -74,6 +83,14 @@ class RegistAlbumViewController: UIViewController {
     var updateFlg = false
     // ID設定するためのアルバム数取得
     var albumCnt = 0
+    // 画像保存フラグ
+    var saveImageFlg = false
+    // 画像のファイルパス
+    var imageFilePath = ""
+    // アーティストのアルバム件数
+    var cntArtistAlbum = 0
+    // 更新前アーティスト名取得
+    var beforeArtistId = ""
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -104,15 +121,24 @@ class RegistAlbumViewController: UIViewController {
                 for artist in artistArray {
                     if artist.id == album.artistId {
                         self.artistField.text = artist.name
+                        self.beforeArtistId = album.artistId
                     }
                 }
             }
             self.chooseDatePicker.date = self.album.releaseDay
             //URL型にキャスト
-            guard let fileURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(self.album.imageUrl) else { return }
-            //パス型に変換
-            let filePath = fileURL.path
-            self.jacketImage.image = UIImage(contentsOfFile: filePath)
+            if album.imageUrl != "" {
+                guard let fileURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(self.album.imageUrl) else { return }
+                //パス型に変換
+                self.imageFilePath = fileURL.path
+                self.jacketImage.image = UIImage(contentsOfFile: self.imageFilePath)
+                self.jacketImage.backgroundColor = UIColor(named: "BackgroundGray")
+                self.saveImageFlg = true
+            }
+            self.noteTextView.text = self.album.note
+            
+            // 記入アーティストのアルバム件数
+            self.cntArtistAlbum = self.realm?.objects(Album.self).filter("artistId == %@", self.album.artistId).count ?? 0
         }
     }
     
@@ -163,31 +189,29 @@ class RegistAlbumViewController: UIViewController {
                 if self.updateFlg {
                     album.id = self.album.id
                 } else {
-                    album.id = self.albumCnt + 1
+                    album.id = NSUUID().uuidString
                 }
                 // タイトルとアーティストに関しては、入力チェックを行っているため、強制アンラップ
                 album.title = self.titleField.text!
-                if let artistCount = realm?.objects(Artist.self) {
-                    if artistCount.count == 0 {
-                        album.artistId = 1
-                        artist.id = 1
-                        addArtistFlg = true
-                    } else if let existArtist = realm?.objects(Artist.self).filter("name == '\(self.artistField.text!)'"),
-                       existArtist.count == 0 {
-                        album.artistId = artistCount.max(ofProperty: "id")! + 1
-                        artist.id = artistCount.max(ofProperty: "id")! + 1
-                        addArtistFlg = true
-                    } else {
-                        album.artistId = artistCount.first?.id ?? 0
-                    }
+                if let existArtist = realm?.objects(Artist.self).filter("name == %@", self.artistField.text!),
+                   existArtist.count != 0{
+                    album.artistId = existArtist.first?.id ?? ""
+                } else {
+                    album.artistId = NSUUID().uuidString
+                    artist.id = album.artistId
+                    addArtistFlg = true
                 }
                 album.releaseDay = self.chooseDatePicker.date
                 // 画像保存
-                self.saveImage()
-                album.imageUrl = self.fileName
+                if self.saveImageFlg {
+                    self.saveImage()
+                    album.imageUrl = self.fileName
+                }
+                // 備考
+                album.note = self.noteTextView.text
                 
                 self.realm?.add(album, update: .modified)
-                print("OK")
+                print("IN")
             }
         } catch {
             print("errorが発生しました。")
@@ -199,7 +223,6 @@ class RegistAlbumViewController: UIViewController {
                 try realm?.write {
                     artist.name = self.artistField.text!
                     self.realm?.add(artist, update: .modified)
-                    print("OK")
                 }
             } catch {
                 print("errorが発生しました。")
@@ -207,10 +230,71 @@ class RegistAlbumViewController: UIViewController {
             }
         }
         
+        if self.updateFlg {
+            if realm?.objects(Album.self).filter("artistId == %@", self.beforeArtistId).count == 0 {
+                do{
+                    try self.realm?.write{
+                        self.realm?.delete(((self.realm?.objects(Artist.self).filter("id == %@", self.beforeArtistId))!))
+                    }
+                }catch {
+                    print("errorが発生しました。")
+                    SVProgressHUD.showError(withStatus: "削除の際にエラーが発生しました。")
+                }
+                print("IN2")
+            }
+        }
+        
         // トップ画面(一覧画面)に戻る
         self.navigationController?.popToRootViewController(animated: true)
     }
     
+    @IBAction func deleteButtonTapped(_ sender: UIButton) {
+        // ① UIAlertControllerクラスのインスタンスを生成
+        // タイトル, メッセージ, Alertのスタイルを指定する
+        // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+        let alert: UIAlertController = UIAlertController(title: "アルバム削除", message: "本当に削除しますか？", preferredStyle:  UIAlertController.Style.alert)
+        // ② Actionの設定
+        // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+        // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+        // OKボタン
+        //ここから追加
+        let okAction = UIAlertAction(title: "削除", style: .destructive) { (action) in
+            // アーティスト削除
+            if self.cntArtistAlbum == 1 {
+                do{
+                    try self.realm?.write{
+                        self.realm?.delete(((self.realm?.objects(Artist.self).filter("id == %@", self.album.artistId))!))
+                        // トップ画面(一覧画面)に戻る
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }catch {
+                    print("errorが発生しました。")
+                    SVProgressHUD.showError(withStatus: "削除の際にエラーが発生しました。")
+                }
+            }
+            
+            //ファイルの削除
+            if self.imageFilePath != ""{
+                try? FileManager.default.removeItem(atPath: self.imageFilePath)
+            }
+            do{
+                try self.realm?.write{
+                    self.realm?.delete(self.album)
+                }
+            }catch {
+                print("errorが発生しました。")
+                SVProgressHUD.showError(withStatus: "削除の際にエラーが発生しました。")
+            }
+        }
+        let cancelAction = UIAlertAction(title: "キャンセル", style: .cancel) { (action) in
+            self.dismiss(animated: true, completion: nil)
+        }
+        // ③ UIAlertControllerにActionを追加
+        alert.addAction(cancelAction)
+        alert.addAction(okAction)
+        // ④ Alertを表示
+        present(alert, animated: true, completion: nil)
+    }
     
     // MARK: - Private Methods
     /// TextFieldの入力チェックを行うメソッド
@@ -273,6 +357,7 @@ extension RegistAlbumViewController: UIImagePickerControllerDelegate, UINavigati
             let image = info[.originalImage] as! UIImage
             self.jacketImage.image = image
             self.jacketImage.backgroundColor = UIColor(named: "BackgroundGray")
+            self.saveImageFlg = true
         }
     }
 }

@@ -69,10 +69,11 @@ class ViewController: UIViewController {
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
         // 決定バーの生成
-        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
+        let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 42))
         let spacelItem = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(self.done))
-        toolbar.setItems([spacelItem, doneItem], animated: true)
+        let cancelItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(self.cancel))
+        toolbar.setItems([cancelItem, spacelItem, doneItem], animated: true)
         // インプットビュー設定
         self.chooseArtist.inputView = self.pickerView
         self.chooseArtist.inputAccessoryView = toolbar
@@ -100,9 +101,11 @@ class ViewController: UIViewController {
             self.albumListcollectionView.isHidden = false
             self.albumListcollectionView.reloadData()
         } else {
+            self.displayAlbumNum.text = "検索結果：0件"
             self.notAlbumText.isHidden = false
             self.albumListcollectionView.isHidden = true
         }
+        self.chooseArtistStackView.isHidden = true
     }
     
     // MARK: - IBAction
@@ -112,31 +115,41 @@ class ViewController: UIViewController {
         viewController.artistArray = self.artistArray
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
     @IBAction func chooseArtistButtonTapped(_ sender: UIButton) {
-        if let artistNum = self.artistArray?.count , artistNum != 0 {
-            self.chooseArtistStackView.isHidden = false
+        if self.chooseArtistStackView.isHidden {
+            if let artistNum = self.artistArray?.count , artistNum == 0 {
+                self.chooseArtistStackView.isHidden = true
+                
+                // ① UIAlertControllerクラスのインスタンスを生成
+                // タイトル, メッセージ, Alertのスタイルを指定する
+                // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+                let alert: UIAlertController = UIAlertController(title: "アルバムを追加してください", message: "アルバムが１枚も登録されていないため、選択するアーティストが存在しません。", preferredStyle:  UIAlertController.Style.alert)
+                // ② Actionの設定
+                // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+                // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+                // OKボタン
+                //ここから追加
+                let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                    self.dismiss(animated: true, completion: nil)
+                }
+                // ③ UIAlertControllerにActionを追加
+                alert.addAction(okAction)
+                // ④ Alertを表示
+                present(alert, animated: true, completion: nil)
+            } else {
+                self.chooseArtistStackView.isHidden = false
+            }
         } else {
             self.chooseArtistStackView.isHidden = true
-            
-            // ① UIAlertControllerクラスのインスタンスを生成
-            // タイトル, メッセージ, Alertのスタイルを指定する
-            // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
-            let alert: UIAlertController = UIAlertController(title: "アルバムを追加してください", message: "アルバムが１枚も登録されていないため、選択するアーティストが存在しません。", preferredStyle:  UIAlertController.Style.alert)
-            // ② Actionの設定
-            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
-            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
-            // OKボタン
-            let defaultAction: UIAlertAction = UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler:{
-                // ボタンが押された時の処理を書く（クロージャ実装）
-                (action: UIAlertAction!) -> Void in
-                print("OK")
-            })
-            // ③ UIAlertControllerにActionを追加
-
-            alert.addAction(defaultAction)
-            // ④ Alertを表示
-            present(alert, animated: true, completion: nil)
         }
+    }
+    
+    @IBAction func resetButtonTapped(_ sender: Any) {
+        self.chooseArtist.text = ""
+        self.albumArray = self.realm?.objects(Album.self)
+        self.displayAlbumNum.text = "検索結果：\(self.albumArray?.count ?? 0)件"
+        self.albumListcollectionView.reloadData()
     }
     
     // MARK: - Private Methods
@@ -148,10 +161,16 @@ class ViewController: UIViewController {
                 self.chooseArtist.text = artistName
             }
             if let id = self.artistArray?[self.pickerView.selectedRow(inComponent: 0)].id {
-                self.albumArray = self.realm?.objects(Album.self).filter("artistId = \(id)")
+                self.albumArray = self.realm?.objects(Album.self).filter("artistId == %@", id)
             }
+            self.displayAlbumNum.text = "検索結果：\(self.albumArray?.count ?? 0)件"
             self.albumListcollectionView.reloadData()
         }
+    }
+    
+    // キャンセルボタン
+    @objc func cancel(){
+        self.chooseArtist.endEditing(true)
     }
 }
 
@@ -167,7 +186,7 @@ extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
         cell.layer.borderColor = CGColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
         cell.layer.cornerRadius = 15
         // Cellに値を設定する
-        if let album = self.albumArray?[indexPath.row] { // taskをアンラップする
+        if let album = self.albumArray?[indexPath.row] {
             cell.titleLabel.text = album.title
             if let artistArray = self.artistArray {
                 for artist in artistArray {
@@ -182,10 +201,13 @@ extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
             cell.releaseDayLabel.text = dateString
             
             //URL型にキャスト
-            guard let fileURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(album.imageUrl) else { return cell }
-            //パス型に変換
-            let filePath = fileURL.path
-            cell.jacketImage.image = UIImage(contentsOfFile: filePath)
+            print(album.imageUrl)
+            if album.imageUrl != "" {
+                guard let fileURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(album.imageUrl) else { return cell }
+                //パス型に変換
+                let filePath = fileURL.path
+                cell.jacketImage.image = UIImage(contentsOfFile: filePath)
+            }
         }
         return cell
     }

@@ -18,5 +18,13 @@ class AlbumListCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.titleLabel.text = ""
+        self.artistLabel.text = ""
+        self.releaseDayLabel.text = ""
+        self.jacketImage.image = UIImage(named: "noimage.png")
+   }
 
 }

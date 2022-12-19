@@ -9,9 +9,9 @@ import UIKit
 import RealmSwift
 
 class Album: Object {
-    @objc dynamic var id = 0
+    @objc dynamic var id = NSUUID().uuidString
     @objc dynamic var title = ""
-    @objc dynamic var artistId = 0
+    @objc dynamic var artistId = NSUUID().uuidString
     @objc dynamic var releaseDay = Date()
     @objc dynamic var imageUrl = ""
     @objc dynamic var note = ""
@@ -22,7 +22,7 @@ class Album: Object {
 }
 
 class Artist: Object {
-    @objc dynamic var id = 0
+    @objc dynamic var id = NSUUID().uuidString
     @objc dynamic var name = ""
 
     override static func primaryKey() -> String? {
