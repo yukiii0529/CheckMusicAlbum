@@ -59,7 +59,6 @@ class ViewController: UIViewController {
         // セルの大きさを設定
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: 165, height: 245)
-        print(self.view.frame.width)
         let inset = (self.view.frame.width - 355) / 2
         layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         layout.minimumLineSpacing = 15
@@ -201,7 +200,6 @@ extension ViewController: UICollectionViewDelegate,UICollectionViewDataSource {
             cell.releaseDayLabel.text = dateString
             
             //URL型にキャスト
-            print(album.imageUrl)
             if album.imageUrl != "" {
                 guard let fileURL: URL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent(album.imageUrl) else { return cell }
                 //パス型に変換

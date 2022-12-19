@@ -91,6 +91,8 @@ class RegistAlbumViewController: UIViewController {
     var cntArtistAlbum = 0
     // 更新前アーティスト名取得
     var beforeArtistId = ""
+    // 登録・更新成功フラグ
+    var successFlg = true
     
     // MARK: - Life Cycle
     override func viewDidLoad() {
@@ -211,10 +213,10 @@ class RegistAlbumViewController: UIViewController {
                 album.note = self.noteTextView.text
                 
                 self.realm?.add(album, update: .modified)
-                print("IN")
             }
         } catch {
             print("errorが発生しました。")
+            self.successFlg = false
             SVProgressHUD.showError(withStatus: "登録の際にエラーが発生しました。")
         }
         
@@ -226,6 +228,7 @@ class RegistAlbumViewController: UIViewController {
                 }
             } catch {
                 print("errorが発生しました。")
+                self.successFlg = false
                 SVProgressHUD.showError(withStatus: "登録の際にエラーが発生しました。")
             }
         }
@@ -240,8 +243,30 @@ class RegistAlbumViewController: UIViewController {
                     print("errorが発生しました。")
                     SVProgressHUD.showError(withStatus: "削除の際にエラーが発生しました。")
                 }
-                print("IN2")
             }
+        }
+        
+        if self.successFlg {
+            // ① UIAlertControllerクラスのインスタンスを生成
+            // タイトル, メッセージ, Alertのスタイルを指定する
+            // 第3引数のpreferredStyleでアラートの表示スタイルを指定する
+            var alert: UIAlertController = UIAlertController(title: "登録成功", message: "アルバムを登録いたしました。", preferredStyle:  UIAlertController.Style.alert)
+            if self.updateFlg {
+                alert = UIAlertController(title: "更新成功", message: "アルバムの内容を更新いたしました。", preferredStyle:  UIAlertController.Style.alert)
+            }
+            // ② Actionの設定
+            // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
+            // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
+            // OKボタン
+            //ここから追加
+            let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+                self.navigationController?.popToRootViewController(animated: true)
+            }
+            // ③ UIAlertControllerにActionを追加
+            alert.addAction(okAction)
+            // ④ Alertを表示
+            present(alert, animated: true, completion: nil)
+            
         }
         
         // トップ画面(一覧画面)に戻る
@@ -319,7 +344,6 @@ class RegistAlbumViewController: UIViewController {
         let pngImageData = self.jacketImage.image?.pngData()
         do {
             try pngImageData!.write(to: self.documentDirectoryFileURL)
-            print("OK")
         } catch {
             //エラー処理
             print("エラー")
