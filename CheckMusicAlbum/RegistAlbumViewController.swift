@@ -14,6 +14,7 @@ class RegistAlbumViewController: UIViewController {
     // MARK: - IBOutlet
     @IBOutlet weak private var titleField: UITextField! {
         didSet {
+            self.titleField.delegate = self
             self.titleField.layer.borderWidth = 1
             self.titleField.layer.cornerRadius = 5
             self.titleField.layer.borderColor = CGColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
@@ -22,6 +23,7 @@ class RegistAlbumViewController: UIViewController {
     @IBOutlet weak var chooseDatePicker: UIDatePicker!
     @IBOutlet weak private var artistField: UITextField! {
         didSet {
+            self.artistField.delegate = self
             self.artistField.layer.borderWidth = 1
             self.artistField.layer.cornerRadius = 5
             self.artistField.layer.borderColor = CGColor(red: 126/255, green: 209/255, blue: 255/255, alpha: 1)
@@ -142,6 +144,29 @@ class RegistAlbumViewController: UIViewController {
             // 記入アーティストのアルバム件数
             self.cntArtistAlbum = self.realm?.objects(Album.self).filter("artistId == %@", self.album.artistId).count ?? 0
         }
+        
+        // TextViewに閉じるボタン追加
+        // ツールバー生成
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 320, height: 40))
+        // スタイルを設定
+        toolBar.barStyle = UIBarStyle.default
+        // 画面幅に合わせてサイズを変更
+        toolBar.sizeToFit()
+        // 閉じるボタンを右に配置するためのスペース?
+        let spacer = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: self, action: nil)
+        // 閉じるボタン
+        let commitButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.done, target: self, action: #selector(self.commitButtonTapped))
+        // スペース、閉じるボタンを右側に配置
+        toolBar.items = [spacer, commitButton]
+        // textViewのキーボードにツールバーを設定
+        self.noteTextView.inputAccessoryView = toolBar
+        
+        let tapGR: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.commitButtonTapped))
+        tapGR.cancelsTouchesInView = false
+        self.view.addGestureRecognizer(tapGR)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // MARK: - IBAction
@@ -254,6 +279,7 @@ class RegistAlbumViewController: UIViewController {
             if self.updateFlg {
                 alert = UIAlertController(title: "更新成功", message: "アルバムの内容を更新いたしました。", preferredStyle:  UIAlertController.Style.alert)
             }
+            
             // ② Actionの設定
             // Action初期化時にタイトル, スタイル, 押された時に実行されるハンドラを指定する
             // 第3引数のUIAlertActionStyleでボタンのスタイルを指定する
@@ -362,6 +388,29 @@ class RegistAlbumViewController: UIViewController {
             self.documentDirectoryFileURL = path
         }
     }
+    
+    // キーボード閉じる
+    @objc func commitButtonTapped() {
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillShow(notification: NSNotification) {
+        if !self.noteTextView.isFirstResponder {
+            return
+        }
+    
+        if self.view.frame.origin.y == 0 {
+            if let keyboardRect = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+                self.view.frame.origin.y -= keyboardRect.height * 0.62
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
+        }
+    }
 }
 
 // MARK: - UIImagePickerControllerDelegate, UINavigationControllerDelegate
@@ -383,5 +432,12 @@ extension RegistAlbumViewController: UIImagePickerControllerDelegate, UINavigati
             self.jacketImage.backgroundColor = UIColor(named: "BackgroundGray")
             self.saveImageFlg = true
         }
+    }
+}
+
+extension RegistAlbumViewController: UITextViewDelegate, UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }
